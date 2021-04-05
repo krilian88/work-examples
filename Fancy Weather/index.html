@@ -1,1 +1,87 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy weather</title>
+    <link rel="stylesheet" href="css/style.css">  
+    <script async src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div class="container__control-panel">
+            <div class="control-panel__buttons">
+                <div class="button refresh">
+                    <img class="refresh_img" src="./img/Vector.svg" alt="refresh image">
+                </div>
+                <div class="button language-droplist">
+                    <select class="language-droplist__options">
+                        <option value="en">EN</option>
+                        <option value="ru">RU</option>
+                    </select>
+                </div>
+                <div class="control-panel__temperature">
+                    <div class="button fahrenheit" data-temp="imperial">°F</div>
+                    <div class="button celsius" data-temp="metric">°C</div>
+                </div>
+            </div>
+            <div class="control-panel__search">
+                <input class="search-input" type="search" placeholder="Search city">
+                <div class="button search">Search</div>
+            </div>
+        </div>
+        <div class="container__weather">
+            <div class="weather__location"></div>
+            <div class="weather__data-time"></div>
+            <div class="weather__today">
+                <div class="weather__today__temperature"></div>
+                <div class="weather__today__forecast">
+                    <div class="weather__today__forecast__icon">
+                        <img class="weather__today__img" alt="">
+                    </div> 
+                    <div class="weather__today__forecast__description"></div>
+                </div>
+        </div>
+        <div class="weather__three-days">
+            <div class="weather__three-days__container">
+                <div class="weather__three-days__container__day"></div>
+                <div class="weather__three-days__container__forecast">
+                    <div class="weather__three-days__container__forecast__temperature"></div>
+                    <div class="weather__three-days__container__forecast__icon">
+                        <img class="weather-icon"  alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="weather__three-days__container">
+                <div class="weather__three-days__container__day"></div>
+                <div class="weather__three-days__container__forecast">
+                    <div class="weather__three-days__container__forecast__temperature"></div>
+                    <div class="weather__three-days__container__forecast__icon">
+                        <img class="weather-icon" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="weather__three-days__container">
+                <div class="weather__three-days__container__day"></div>
+                <div class="weather__three-days__container__forecast">
+                    <div class="weather__three-days__container__forecast__temperature"></div>
+                    <div class="weather__three-days__container__forecast__icon">
+                        <img class="weather-icon" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container__map">
+            <div id="map" class="map__img"></div>
+            <div class="map__coordinates">
+                <span class="map__coordinates__latitude"></span>
+                <span class="map__coordinates__longitude"></span>
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+    <script type="module" src="./imagesAPI.js"></script>   
+</body>
+</html>
