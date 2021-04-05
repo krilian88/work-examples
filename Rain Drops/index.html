@@ -1,1 +1,55 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Drops</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game_option">
+            <button class="game_button start_button">Start game</button>
+            <button class="game_button reset_button">Reset</button>
+            <button class="game_button tutorial_button">How to play</button>
+        </div>
+        <div class="play_field">
+            <div class="startScreen">
+                <p class="game_name">Raindrops</p>
+                <p class="description">It's raining numbers! Solve the equations before they fill the river!</p>
+            </div>
+            <div class="wrong_answer"></div>
+            <canvas class= "canvas river_level"></canvas>
+        </div>
+        <div class="control">
+            <div class="control__score">
+                <img src="./images/star.png" alt="star" class="control__star">
+                <span class="control__scoreText">Score: 0</span>
+            </div>
+            <div class="control__calculator">
+                <div class="control__display"></div>
+                <div class="control__button">7</div>
+                <div class="control__button">8</div>
+                <div class="control__button">9</div>
+                <div class="control__button control__button--clear">Clear</div>
+                <div class="control__button control__button--four">4</div>
+                <div class="control__button control__button--five">5</div>
+                <div class="control__button control__button--six">6</div>
+                <div class="control__button control__button--enter">Enter</div>
+                <div class="control__button control__button--one">1</div>
+                <div class="control__button control__button--two">2</div>
+                <div class="control__button control__button--three">3</div>
+                <div class="control__button control__button--zero">0</div>
+                <div class="control__button control__button--delete">Del</div>
+            </div>
+            <img src="./images/fullScreen.png" class="fullscreen" alt="fullscreen-icon">
+        </div>
+     </div>
+     <audio src="./sounds/rain.mp3" class="sound" loop></audio>
+     <audio src="./sounds/drop.mp3" class="drop-sound"></audio>
+     <audio src="./sounds/bubble.mp3" class="bubble-sound"></audio>
+     <audio src="./sounds/wrongAnswer.mp3" class="wrong-sound"></audio>
+    <script src="./main.js"></script>
+    <script src="./wave.js"></script>
+</body>
+</html>
