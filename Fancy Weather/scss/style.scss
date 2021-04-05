@@ -1,1 +1,356 @@
+@import "fonts";
+@import "mixins";
+@import "map";
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    height: 100vh;
+    background-image: url('../img/default.jpg');
+    background-size: cover;
+    transition: background-image 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &__control-panel {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 57px;
+    }
+    &__weather {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__map {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.control-panel {
+    &__buttons{
+        display: flex;
+        justify-content: start;
+        margin: 40px 0 0 20px;
+    }
+    &__temperature {
+        display: flex;
+    }
+    &__search {
+        display: flex;
+        margin: 40px 20px 0 0;
+    }
+}
+
+.button {
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+    background-color: rgba(174, 181, 185, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @extend %font-add;
+    @include font ($size: 1.4rem, $weight: bold, $height: 1.7rem);
+    &.refresh {
+        cursor: pointer;
+        &:hover {
+            background-color:rgba(94, 218, 224, 0.767);
+        }
+    }
+    &.search {
+        width: 101px;
+        height: 44px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        text-transform: uppercase;
+        user-select: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        &:hover {
+            background-color: rgba(94, 218, 224, 0.767);
+        }
+    }
+    &.language-droplist {
+        width: 71px;
+        height: 44px;
+        margin-left: 10px;
+        margin-right: 10px;
+        &:hover {
+            background-color: rgba(94, 218, 224, 0.767);
+        }
+    }
+    &.fahrenheit {
+        user-select: none;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        background-color: rgba(222, 234, 240, 0.4);
+        color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(94, 218, 224, 0.767);
+        }
+        &.active {
+            background-color:  rgba(248, 232, 8, 0.931);
+            color: #FFFFFF;
+        }
+    }
+    &.celsius {
+        user-select: none;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: rgba(222, 234, 240, 0.4);
+        color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(94, 218, 224, 0.767);
+        }
+        &.active {
+            background-color: rgba(248, 232, 8, 0.931);;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.search-input {
+    outline: none;
+    width: 274px;
+    border: 1px solid rgba(228, 227, 227, 0.2);
+    background-color: rgba(76, 82, 85, 0.4);
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    padding-left: 15px;
+    @extend %font-add;
+    @include font ($size: 1.4rem, $weight: normal, $height: 1.7rem);
+    
+    &::placeholder {
+        @extend %font-add;
+        @include font ($size: 1.4rem, $weight: normal, $height: 1.7rem);
+    }
+}
+
+.language-droplist__options {
+    outline: none;
+    background-color: rgba(174, 181, 185, 0);
+    border: none;
+    @extend %font-add;
+    @include font ($size: 1.4rem, $weight: bold, $height: 1.7rem);
+    &>option {
+        background-color: rgb(74, 120, 146);
+    }
+}
+
+.weather {
+    &__location {
+        width: 635px;
+        text-transform: uppercase;
+        text-align: center;
+        @extend %font-add;
+        @include font ($size: 4rem, $weight: bold, $height: 4.5rem);
+    }
+    &__data-time {
+        text-transform: capitalize;
+        @extend %font-add;
+        @include font ($size: 2.4rem, $weight: 600, $height: 2.9rem);
+        margin-top: 5px;
+    }
+    &__today {
+        display: flex;
+        &__temperature {
+            @extend %font-add;
+            @include font ($size: 18rem, $weight: bold, $height: 22rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__forecast {
+            display: flex;
+            flex-direction: column;
+            &__icon {
+                display: flex;
+                justify-content: center;
+                width: 200px;
+            }
+            &__description {
+                display: flex;
+                flex-direction: column;
+                &>span {
+                    text-transform: uppercase;
+                    @extend %font-add;
+                    @include font ($size: 2.2rem, $weight: bold, $height: 3.7rem);
+                } 
+            }
+        }
+    }
+
+    &__three-days {
+        display: flex;
+        margin-top: 80px;
+        gap: 20px;
+        &__container {
+            display: flex;
+            flex-direction: column;
+            &__day {
+                text-transform: uppercase;
+                @extend %font-add;
+                @include font ($size: 2.2rem, $weight: bold, $height: 2.7rem);
+            }
+            &__forecast {
+                display: flex;
+                &__temperature {
+                    @extend %font-add;
+                    @include font ($size: 7rem, $weight: 600, $height: 7.8rem);
+                }
+                &__icon {
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
+
+.error-message {
+    position: fixed;
+    padding: 10px 20px;
+    border: 1px solid #b3c9ce;
+    border-radius: 4px;
+    text-align: center;
+    font: italic 14px/1.3 sans-serif;
+    color: #333;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+}
+
+
+.map {
+    &__coordinates {
+        display: flex;
+        flex-direction: column;
+        &>span {
+            @extend %font-add;
+            @include font ($size: 2rem, $weight: 600, $height: 3rem);
+        }
+    }
+}
+
+#map {
+    height: 30vw;
+    width: 30vw;
+    border-radius: 20px;
+}
+
+
+.refresh_img {
+    cursor: pointer;
+    &.active {
+        transition: all 0.5s ease;
+        animation: rotate 1s linear;
+    }
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width: 730px) {
+    .container {
+        &__control-panel {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        &__weather {
+            margin-left: 0;
+        }
+        &__map {
+            margin-right: 0;
+        }
+    }
+
+    .control-panel {
+        &__buttons,&__search{
+            margin: 20px 0 0 0;
+        }
+    }
+
+    .weather {
+        &__today {
+            flex-wrap: wrap;
+            justify-content: center;
+            &__temperature {
+                @include font ($size: 15rem, $weight: bold, $height: 16rem); 
+            }
+        }
+        &__location {
+            width: 320px;
+            @include font ($size: 2.5rem, $weight: bold, $height: 3rem);
+        }
+        &__data-time {
+            width: 320px;
+            text-align: center;
+            @include font ($size: 2rem, $weight: bold, $height: 2.5rem);
+        }
+        &__three-days {
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        &__three-days__container {
+            &__day {
+                text-align: center;
+                @include font ($size: 3rem, $weight: bold, $height: 3.5rem);
+            }
+            &__forecast {
+                align-items: center;
+                &__icon {
+                    width: 150px;
+                }
+            }
+        }
+    }
+    .search-input {
+        width: 160px;
+    }
+
+    .button.search {
+        width: 75px;
+    }
+
+    .map__coordinates {
+        align-items: center;
+    }
+
+    #map {
+        margin-top: 20px;
+        height: 75vw;
+        width: 90vw;
+    }
+}
